@@ -1,5 +1,7 @@
 package com.ecommerce.orders.entity;
 
+import com.ecommerce.orders.auditing.CAuditEntityListener;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
+@EntityListeners(CAuditEntityListener.class)
 public class Audit {
     @CreatedDate
     private LocalDateTime createdAt;
