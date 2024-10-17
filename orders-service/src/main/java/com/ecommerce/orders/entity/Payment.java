@@ -17,8 +17,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String orderId;
-    private String paymentMethod;
-
+    private PaymentType paymentMethod;
     private String paymentNumber;
     private LocalDateTime paymentDate;
     @OneToOne

@@ -21,9 +21,11 @@ public class Order extends Audit {
     private Long id;
     private String orderId;
     private Long userId;
+    private Long productId;
     private Double totalAmount;
     private Long quantity;
-    private Double discount;
+    private Double price;
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
     @OneToOne(mappedBy = "order",fetch = FetchType.EAGER,orphanRemoval = true)
     private Payment payment;

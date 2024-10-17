@@ -1,15 +1,12 @@
 package com.ecommerce.orders.sevice.impl;
 
-import com.ecommerce.orders.dto.ProductDTO;
 import com.ecommerce.orders.sevice.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import org.springframework.http.HttpStatus;
 
 
 @AllArgsConstructor

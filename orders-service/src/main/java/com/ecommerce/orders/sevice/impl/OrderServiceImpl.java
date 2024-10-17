@@ -5,11 +5,13 @@ import com.ecommerce.orders.exception.OrderNotFoundException;
 import com.ecommerce.orders.exception.OrdersException;
 import com.ecommerce.orders.repository.OrdersRepository;
 import com.ecommerce.orders.sevice.OrderService;
+import com.fasterxml.classmate.members.RawMember;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -17,8 +19,12 @@ public class OrderServiceImpl implements OrderService {
     private OrdersRepository ordersRepository;
 
     @Override
-    public Order placeOrder(Order order, Long userId) {
+    public Order placeOrder(Order order, Long userId, Long productId) {
         try {
+            order.setUserId(userId);
+            order.setProductId(productId);
+            order.setOrderId(generateOrderId());
+            order.setTotalAmount(calculateTotalAmount(order.getPrice(),order.getQuantity()));
             return ordersRepository.save(order);
         } catch (Exception e) {
             throw new RuntimeException("Can't place a order :" + e);
@@ -26,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrders(Long userId, String userName) {
+    public List<Order> getAllOrders(Long userId, Long productId) {
         List<Order> orders = ordersRepository.findAll();
         if (!CollectionUtils.isEmpty(orders)) {
             return orders;
@@ -51,5 +57,17 @@ public class OrderServiceImpl implements OrderService {
         } catch (Exception e) {
             throw new OrdersException("Can't cancel the order with ID :" + orderId);
         }
+    }
+
+    @Override
+    public String generateOrderId() {
+        Random random=new Random();
+        int sixDigitNumber = 100000 + random.nextInt(900000);
+        return "ODR"+sixDigitNumber;
+    }
+
+    @Override
+    public Double calculateTotalAmount(Double price, Long quantity) {
+        return quantity*price;
     }
 }
