@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private WebClient webClient;
+    /*
     @Override
     public Flux<ProductDTO> getAllProducts() {
       return webClient.get().retrieve()
@@ -20,4 +21,6 @@ public class ProductServiceImpl implements ProductService {
               .bodyToFlux(ProductDTO.class)
               .onErrorResume(WebClientResponseException.class, e -> Mono.error(new RuntimeException("Error: " + e.getResponseBodyAsString())));
     }
+}
+*/
 }
