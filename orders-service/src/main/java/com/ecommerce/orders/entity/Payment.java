@@ -18,6 +18,9 @@ public class Payment {
     private Long id;
     private String orderId;
     private PaymentType paymentMethod;
+
+    private Double amountPaid;
+    private PaymentStatus paymentStatus;
     private String paymentNumber;
     private LocalDateTime paymentDate;
     @OneToOne

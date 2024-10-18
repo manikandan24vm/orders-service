@@ -1,6 +1,8 @@
 package com.ecommerce.orders.dto;
 
 import com.ecommerce.orders.entity.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,11 @@ public class OrdersDTO {
     private Long userId;
     private Long productId;
     private Double totalAmount;
+    @NotNull(message = "Quantity cannot be null")
     private Long quantity;
+
     private Double price;
+
     private OrderStatus orderStatus;
+
 }

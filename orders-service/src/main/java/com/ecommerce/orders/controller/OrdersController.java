@@ -10,9 +10,11 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public class OrdersController {
             @ApiResponse(responseCode = "500",description = "internal server error",content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
     })
     @PostMapping("/order/{userId}/{productId}")
-    public ResponseEntity<OrdersDTO> placeOrder(@RequestBody OrdersDTO ordersDTO, @PathVariable Long userId, @PathVariable Long productId){
+    public ResponseEntity<OrdersDTO> placeOrder(@RequestBody @Valid OrdersDTO ordersDTO, @PathVariable Long userId, @PathVariable Long productId){
         Order orderData= orderService.placeOrder(OrdersMapper.toEntity(ordersDTO),userId,productId);
         return ResponseEntity.status(HttpStatus.CREATED).body(OrdersMapper.ordersDTO(orderData));
     }

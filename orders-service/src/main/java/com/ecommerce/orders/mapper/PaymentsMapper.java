@@ -14,6 +14,8 @@ public class PaymentsMapper {
         PaymentsDTO paymentsDTO=new PaymentsDTO();
         paymentsDTO.setId(payments.getId());
         paymentsDTO.setPaymentNumber(payments.getPaymentNumber());
+        paymentsDTO.setAmountPaid(payments.getAmountPaid());
+        paymentsDTO.setPaymentStatus(payments.getPaymentStatus());
         paymentsDTO.setPaymentDate(payments.getPaymentDate());
         paymentsDTO.setPaymentMethod(payments.getPaymentMethod());
         paymentsDTO.setOrderId(payments.getOrderId());

@@ -68,6 +68,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Double calculateTotalAmount(Double price, Long quantity) {
-        return quantity*price;
+        return (quantity==0)?price:quantity*price;
     }
 }
